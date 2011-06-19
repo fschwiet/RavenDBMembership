@@ -35,7 +35,7 @@ namespace RavenDBMembership.IntegrationTests
 
                 //    string connectionStringValue = (string)connectionStringField.GetValue(Membership.Provider);
 
-                //    expect(() => connectionStringValue == DatabaseInitialization.GetConnectionStringFor(FixtureConstants.DatabaseName));
+                //    expect(() => connectionStringValue == DatabaseInitialization.GetConnectionStringFor(FixtureConstants.SqlMembershipProviderDatabaseName));
                 //});
             });
 
@@ -55,7 +55,7 @@ namespace RavenDBMembership.IntegrationTests
 
                     string connectionStringValue = (string)connectionStringField.GetValue(Membership.Provider);
 
-                    expect(() => connectionStringValue == DatabaseInitialization.GetConnectionStringFor(FixtureConstants.DatabaseName));
+                    expect(() => connectionStringValue == DatabaseInitialization.GetConnectionStringFor(FixtureConstants.SqlMembershipProviderDatabaseName));
                 });
             });
 

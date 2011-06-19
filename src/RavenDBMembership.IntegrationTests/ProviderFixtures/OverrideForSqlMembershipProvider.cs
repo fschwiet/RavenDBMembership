@@ -15,14 +15,14 @@ namespace RavenDBMembership.IntegrationTests.ProviderFixtures
         public override MembershipProvider GetProvider()
         {
             string tempPath = Properties.Settings.Default.AccessibleTempPath;
-            string databaseMdfPath = Path.Combine(tempPath, @"RavenDBMembershipTestSqlDatabase\DatabaseFile.mdf");
+            string databaseMdfPath = Path.Combine(tempPath, @"SqlMembershipProviderTestDatabase\DatabaseFile.mdf");
 
             if (!Directory.Exists(tempPath))
                 Directory.CreateDirectory(tempPath);
 
-            DatabaseInitialization.DetachDatabase(FixtureConstants.DatabaseName);
-            DatabaseInitialization.RecreateDatabase(FixtureConstants.DatabaseName, databaseMdfPath);
-            DatabaseInitialization.RunSqlMembershipCreationScript(FixtureConstants.DatabaseName);
+            DatabaseInitialization.DetachDatabase(FixtureConstants.SqlMembershipProviderDatabaseName);
+            DatabaseInitialization.RecreateDatabase(FixtureConstants.SqlMembershipProviderDatabaseName, databaseMdfPath);
+            DatabaseInitialization.RunSqlMembershipCreationScript(FixtureConstants.SqlMembershipProviderDatabaseName);
 
             var result = new SqlMembershipProvider();
 
@@ -42,7 +42,7 @@ namespace RavenDBMembership.IntegrationTests.ProviderFixtures
 
             Assert.That(connectionStringProperty, Is.Not.Null);
 
-            connectionStringProperty.SetValue(provider, DatabaseInitialization.GetConnectionStringFor(FixtureConstants.DatabaseName));
+            connectionStringProperty.SetValue(provider, DatabaseInitialization.GetConnectionStringFor(FixtureConstants.SqlMembershipProviderDatabaseName));
         }
     }
 }

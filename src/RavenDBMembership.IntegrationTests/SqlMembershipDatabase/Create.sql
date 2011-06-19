@@ -26,7 +26,7 @@ DECLARE @dbname nvarchar(128)
 DECLARE @dboptions nvarchar(1024)
 
 SET @dboptions = N'/**/'
-SET @dbname = N'RavenDBMembershipTestSqlDatabase'
+SET @dbname = N'SqlMembershipProviderTestDatabase'
 
 IF (NOT EXISTS (SELECT name
                 FROM master.dbo.sysdatabases
@@ -39,7 +39,7 @@ BEGIN
 END
 GO
 
-USE [RavenDBMembershipTestSqlDatabase]
+USE [SqlMembershipProviderTestDatabase]
 GO
 
 /*************************************************************/
@@ -790,7 +790,7 @@ GO
 
 DECLARE @dbname nvarchar(128)
 
-SET @dbname = N'RavenDBMembershipTestSqlDatabase'
+SET @dbname = N'SqlMembershipProviderTestDatabase'
 
 IF (NOT EXISTS (SELECT name
                 FROM master.dbo.sysdatabases
@@ -800,7 +800,7 @@ BEGIN
 END
 GO
 
-USE [RavenDBMembershipTestSqlDatabase]
+USE [SqlMembershipProviderTestDatabase]
 GO
 
 IF (NOT EXISTS (SELECT name
@@ -2370,7 +2370,7 @@ GO
 
 DECLARE @dbname nvarchar(128)
 
-SET @dbname = N'RavenDBMembershipTestSqlDatabase'
+SET @dbname = N'SqlMembershipProviderTestDatabase'
 
 IF (NOT EXISTS (SELECT name
                 FROM master.dbo.sysdatabases
@@ -2380,7 +2380,7 @@ BEGIN
 END
 GO
 
-USE [RavenDBMembershipTestSqlDatabase]
+USE [SqlMembershipProviderTestDatabase]
 GO
 
 IF (NOT EXISTS (SELECT name
@@ -2993,7 +2993,7 @@ GO
 
 DECLARE @dbname nvarchar(128)
 
-SET @dbname = N'RavenDBMembershipTestSqlDatabase'
+SET @dbname = N'SqlMembershipProviderTestDatabase'
 
 IF (NOT EXISTS (SELECT name
                 FROM master.dbo.sysdatabases
@@ -3003,7 +3003,7 @@ BEGIN
 END
 GO
 
-USE [RavenDBMembershipTestSqlDatabase]
+USE [SqlMembershipProviderTestDatabase]
 GO
 
 IF (NOT EXISTS (SELECT name
