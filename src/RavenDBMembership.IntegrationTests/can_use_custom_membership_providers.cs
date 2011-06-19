@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -27,16 +28,19 @@ namespace RavenDBMembership.IntegrationTests
 
                 then_membership_provider_should_be<System.Web.Providers.DefaultMembershipProvider>();
 
-                //then("the connection string is set", delegate
-                //{
-                //    var connectionStringField = typeof(SqlMembershipProvider).GetField("_sqlConnectionString", BindingFlags.NonPublic | BindingFlags.Instance);
+                then("the connection string is set", delegate
+                {
+                    PropertyInfo connectionStringProperty = OverrideForUniversalASPNETMembershipProvider.GetConnectionStringProperty();
 
-                //    Assert.That(connectionStringField, Is.Not.Null);
+                    Assert.That(connectionStringProperty, Is.Not.Null);
 
-                //    string connectionStringValue = (string)connectionStringField.GetValue(Membership.Provider);
+                    string connectionStringValue =
+                        ((ConnectionStringSettings) connectionStringProperty.GetValue(Membership.Provider, null)).
+                            ConnectionString;
 
-                //    expect(() => connectionStringValue == DatabaseInitialization.GetConnectionStringFor(FixtureConstants.SqlMembershipProviderDatabaseName));
-                //});
+                    expect(() => connectionStringValue == 
+                        DatabaseInitialization.GetConnectionStringFor(FixtureConstants.UniversalMembershipProviderDatabaseName));
+                });
             });
 
             when("using SqlMembershipProvider", delegate

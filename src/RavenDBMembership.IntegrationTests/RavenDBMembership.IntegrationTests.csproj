@@ -93,6 +93,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseUtil.cs" />
     <Compile Include="ProviderFixtures\OverrideForUniversalASPNETMembershipProvider.cs" />
     <Compile Include="SpecificationForAllMembershipProviders.cs" />
     <Compile Include="enforces_password_length.cs" />
