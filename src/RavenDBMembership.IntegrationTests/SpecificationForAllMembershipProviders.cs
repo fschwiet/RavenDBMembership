@@ -29,6 +29,15 @@ namespace RavenDBMembership.IntegrationTests
                 SpecifyForEach(true);
             });
 
+            when("using ASP.NET Universal membership provider", delegate
+            {
+                var provider = new OverrideForUniversalASPNETMembershipProvider();
+
+                arrange_membership_provider(provider);
+
+                SpecifyForEach(false);
+            });
+
             when("using raven with munin on disk", delegate
             {
                 var provider = new OverrideForMuninRavenMembershipProvider();

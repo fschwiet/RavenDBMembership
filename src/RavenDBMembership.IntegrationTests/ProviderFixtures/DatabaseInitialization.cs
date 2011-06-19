@@ -148,7 +148,7 @@ END
             });
 
             using (var connection = new SqlConnection(GetConnectionStringFor(databaseName)))
-            {
+            {    
                 connection.Open();
 
                 try

@@ -23,7 +23,8 @@ namespace RavenDBMembership.IntegrationTests.ProviderFixtures
 
             var connectionStringSettings = new ConnectionStringSettings()
             {
-                ConnectionString = DatabaseInitialization.GetConnectionStringFor(FixtureConstants.UniversalMembershipProviderDatabaseName)
+                ProviderName = "System.Data.SqlClient",
+                ConnectionString = "MultipleActiveResultSets=True;" + DatabaseInitialization.GetConnectionStringFor(FixtureConstants.UniversalMembershipProviderDatabaseName)
             };
 
             connectionStringProperty.SetValue(provider, connectionStringSettings, null);

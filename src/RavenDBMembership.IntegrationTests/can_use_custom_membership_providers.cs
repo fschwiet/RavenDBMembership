@@ -28,18 +28,24 @@ namespace RavenDBMembership.IntegrationTests
 
                 then_membership_provider_should_be<System.Web.Providers.DefaultMembershipProvider>();
 
-                then("the connection string is set", delegate
+                var connectionString = arrange(delegate
                 {
                     PropertyInfo connectionStringProperty = OverrideForUniversalASPNETMembershipProvider.GetConnectionStringProperty();
 
                     Assert.That(connectionStringProperty, Is.Not.Null);
 
-                    string connectionStringValue =
-                        ((ConnectionStringSettings) connectionStringProperty.GetValue(Membership.Provider, null)).
-                            ConnectionString;
+                    return ((ConnectionStringSettings)connectionStringProperty.GetValue(Membership.Provider, null)).ConnectionString;
+                });
 
-                    expect(() => connectionStringValue == 
-                        DatabaseInitialization.GetConnectionStringFor(FixtureConstants.UniversalMembershipProviderDatabaseName));
+                then("the connection string is set", delegate
+                {
+                    expect(() => connectionString.Contains(
+                        DatabaseInitialization.GetConnectionStringFor(FixtureConstants.UniversalMembershipProviderDatabaseName)));
+                });
+
+                then("the connection string is configured to use MultipleActiveResultSets", delegate
+                {
+                    expect(() => connectionString.Contains("MultipleActiveResultSets=True"));
                 });
             });
 
