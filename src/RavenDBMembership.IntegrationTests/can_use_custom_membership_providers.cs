@@ -19,6 +19,26 @@ namespace RavenDBMembership.IntegrationTests
     {
         public override void Specify()
         {
+            when("using ASP.NET universal provider", delegate
+            {
+                var membershipOverride = new OverrideForUniversalASPNETMembershipProvider();
+
+                arrange_membership_provider(membershipOverride);
+
+                then_membership_provider_should_be<System.Web.Providers.DefaultMembershipProvider>();
+
+                //then("the connection string is set", delegate
+                //{
+                //    var connectionStringField = typeof(SqlMembershipProvider).GetField("_sqlConnectionString", BindingFlags.NonPublic | BindingFlags.Instance);
+
+                //    Assert.That(connectionStringField, Is.Not.Null);
+
+                //    string connectionStringValue = (string)connectionStringField.GetValue(Membership.Provider);
+
+                //    expect(() => connectionStringValue == DatabaseInitialization.GetConnectionStringFor(FixtureConstants.DatabaseName));
+                //});
+            });
+
             when("using SqlMembershipProvider", delegate
             {
                 var membershipOverride = new OverrideForSqlMembershipProvider();

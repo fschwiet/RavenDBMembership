@@ -83,6 +83,9 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\..\lib\AspnetUniveralProviders0.1\System.Web.Providers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
@@ -90,6 +93,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProviderFixtures\OverrideForUniversalASPNETMembershipProvider.cs" />
     <Compile Include="SpecificationForAllMembershipProviders.cs" />
     <Compile Include="enforces_password_length.cs" />
     <Compile Include="MembershipSpecification.cs" />
