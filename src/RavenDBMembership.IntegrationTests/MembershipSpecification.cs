@@ -13,14 +13,12 @@ namespace RavenDBMembership.IntegrationTests
 
         public void arrange_membership_provider(MembershipProviderOverride membership)
         {
-            var gwt = new GivenWhenThenContext(_skeleFixture);
+            beforeAll(delegate
+                {
+                    membership.InjectMembershipImplementation(GetAdditionalConfiguration());
+                });
 
-            gwt.beforeAll(delegate
-                              {
-                                  membership.InjectMembershipImplementation(GetAdditionalConfiguration());
-                              });
-
-            gwt.afterAll(() => membership.RestoreMembershipImplementation());
+            afterAll(() => membership.RestoreMembershipImplementation());
         }
     }
 }

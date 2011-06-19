@@ -47,15 +47,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NJasmine">
-      <HintPath>..\..\tools\NUnit\net-2.0\addins\NJasmine.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.5.9.10348, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="njasmine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\tools\NUnit\net-2.0\framework\nunit.framework.dll</HintPath>
+      <HintPath>..\..\tools\nunit\addins\njasmine.dll</HintPath>
     </Reference>
-    <Reference Include="PowerAssert">
-      <HintPath>..\..\tools\PowerAssert\PowerAssert.dll</HintPath>
+    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\tools\nunit\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="powerassert, Version=1.0.1.30835, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\tools\nunit\addins\powerassert.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Embedded">
       <HintPath>..\..\lib\RavenDB\EmbeddedClient\Raven.Client.Embedded.dll</HintPath>
