@@ -13,6 +13,8 @@ namespace RavenDBMembership.IntegrationTests
         {
             when("using RavenMembershipProvider in-memory", delegate
             {
+                withCategory("RavenMembershipProvider");
+
                 var provider = new OverrideForInMemoryRavenMembershipProvider();
 
                 arrange_membership_provider(provider);
@@ -22,6 +24,8 @@ namespace RavenDBMembership.IntegrationTests
 
             when("using SQLMembershipProvider", delegate
             {
+                withCategory("SqlMembershipProvider");
+
                 var provider = new OverrideForSqlMembershipProvider();
 
                 arrange_membership_provider(provider);
@@ -31,6 +35,8 @@ namespace RavenDBMembership.IntegrationTests
 
             when("using ASP.NET Universal membership provider", delegate
             {
+                withCategory("AspnetUniversalMembershipProvider");
+
                 var provider = new OverrideForUniversalASPNETMembershipProvider();
 
                 arrange_membership_provider(provider);
@@ -40,6 +46,8 @@ namespace RavenDBMembership.IntegrationTests
 
             when("using raven with munin on disk", delegate
             {
+                withCategory("RavenMembershipProvider");
+
                 var provider = new OverrideForMuninRavenMembershipProvider();
 
                 arrange_membership_provider(provider);
@@ -49,6 +57,8 @@ namespace RavenDBMembership.IntegrationTests
 
             when("using raven with esent on disk", delegate
             {
+                withCategory("RavenMembershipProvider");
+
                 var provider = new OverrideForEsentRavenMembershipProvider();
 
                 arrange_membership_provider(provider);
