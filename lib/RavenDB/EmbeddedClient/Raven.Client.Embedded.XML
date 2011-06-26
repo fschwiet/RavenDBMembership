@@ -10,14 +10,19 @@
             Also supports hosting RavenDB in an embedded mode
             </summary>
         </member>
-        <member name="M:Raven.Client.Embedded.EmbeddableDocumentStore.ProcessConnectionStringOption(System.Net.NetworkCredential,System.String,System.String)">
-            <summary>
-            Parse the connection string option
-            </summary>
-        </member>
         <member name="M:Raven.Client.Embedded.EmbeddableDocumentStore.Dispose">
             <summary>
             Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Raven.Client.Embedded.EmbeddableDocumentStore.GetConnectionStringOptions">
+            <summary>
+            Create the connection string parser
+            </summary>
+        </member>
+        <member name="M:Raven.Client.Embedded.EmbeddableDocumentStore.SetConnectionStringSettings(Raven.Abstractions.Data.RavenConnectionStringOptions)">
+            <summary>
+            Copy the relevant connection string settings
             </summary>
         </member>
         <member name="M:Raven.Client.Embedded.EmbeddableDocumentStore.InitializeInternal">
@@ -68,7 +73,7 @@
              Expose the set of operations by the RavenDB server
             </summary>
         </member>
-        <member name="M:Raven.Client.Embedded.EmbeddedDatabaseCommands.#ctor(Raven.Database.DocumentDatabase,Raven.Client.Document.DocumentConvention)">
+        <member name="M:Raven.Client.Embedded.EmbeddedDatabaseCommands.#ctor(Raven.Database.DocumentDatabase,Raven.Client.Document.DocumentConvention,System.Nullable{System.Guid})">
             <summary>
              Create a new instance
             </summary>
@@ -242,6 +247,23 @@
             <param name="credentialsForSession">The credentials for session.</param>
             <returns></returns>
         </member>
+        <member name="M:Raven.Client.Embedded.EmbeddedDatabaseCommands.UpdateByIndex(System.String,Raven.Abstractions.Data.IndexQuery,Raven.Abstractions.Data.PatchRequest[])">
+            <summary>
+            Perform a set based update using the specified index, not allowing the operation
+            if the index is stale
+            </summary>
+            <param name="indexName">Name of the index.</param>
+            <param name="queryToUpdate">The query to update.</param>
+            <param name="patchRequests">The patch requests.</param>
+        </member>
+        <member name="M:Raven.Client.Embedded.EmbeddedDatabaseCommands.DeleteByIndex(System.String,Raven.Abstractions.Data.IndexQuery)">
+            <summary>
+            Perform a set based deletes using the specified index, not allowing the operation
+            if the index is stale
+            </summary>
+            <param name="indexName">Name of the index.</param>
+            <param name="queryToDelete">The query to delete.</param>
+        </member>
         <member name="M:Raven.Client.Embedded.EmbeddedDatabaseCommands.DeleteByIndex(System.String,Raven.Abstractions.Data.IndexQuery,System.Boolean)">
             <summary>
             Perform a set based deletes using the specified index.
@@ -286,6 +308,26 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Raven.Client.Embedded.EmbeddedDatabaseCommands.Patch(System.String,Raven.Abstractions.Data.PatchRequest[])">
+            <summary>
+            Sends a patch request for a specific document, ignoring the document's Etag
+            </summary>
+            <param name="key">Id of the document to patch</param>
+            <param name="patches">Array of patch requests</param>
+        </member>
+        <member name="M:Raven.Client.Embedded.EmbeddedDatabaseCommands.Patch(System.String,Raven.Abstractions.Data.PatchRequest[],System.Nullable{System.Guid})">
+            <summary>
+            Sends a patch request for a specific document
+            </summary>
+            <param name="key">Id of the document to patch</param>
+            <param name="patches">Array of patch requests</param>
+            <param name="etag">Require specific Etag [null to ignore]</param>
+        </member>
+        <member name="M:Raven.Client.Embedded.EmbeddedDatabaseCommands.DisableAllCaching">
+            <summary>
+            Disable all caching within the given scope
+            </summary>
+        </member>
         <member name="M:Raven.Client.Embedded.EmbeddedDatabaseCommands.SpinBackgroundWorkers">
             <summary>
             Spin the background worker for indexing
@@ -320,6 +362,11 @@
         <member name="P:Raven.Client.Embedded.EmbeddedDatabaseCommands.SupportsPromotableTransactions">
             <summary>
             It seems that we can't promote a transaction inside the same process
+            </summary>
+        </member>
+        <member name="P:Raven.Client.Embedded.EmbeddedDatabaseCommands.ProfilingInformation">
+            <summary>
+            The profiling information
             </summary>
         </member>
     </members>

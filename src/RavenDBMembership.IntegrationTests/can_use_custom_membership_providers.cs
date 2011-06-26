@@ -81,10 +81,8 @@ namespace RavenDBMembership.IntegrationTests
                 {
                     Assert.That(GetMembershipDocumentStore(), Is.InstanceOf<EmbeddableDocumentStore>());
 
-                    expect(() => GetMembershipDocumentConfiguration().RunInMemory);
-                     
                     expect(() => String.IsNullOrEmpty(GetMembershipDocumentConfiguration().DataDirectory)
-                        || !Directory.Exists(GetMembershipDocumentConfiguration().DataDirectory));
+                                 || Directory.GetFiles(GetMembershipDocumentConfiguration().DataDirectory).Count() == 0);
                 });
             });
 
