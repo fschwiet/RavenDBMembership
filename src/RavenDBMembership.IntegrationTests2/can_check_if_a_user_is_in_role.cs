@@ -37,7 +37,7 @@ namespace RavenDBMembership.IntegrationTests2
                         then("the roles provider indicates user is not in role bar", delegate
                         {
                             expect(() => !Roles.IsUserInRole(username, "bar"));
-                            expect(() => !Roles.GetUsersInRole("foo").Contains(username));
+                            expect(() => !Roles.GetUsersInRole("bar").Contains(username));
                         });
                     });
                 });

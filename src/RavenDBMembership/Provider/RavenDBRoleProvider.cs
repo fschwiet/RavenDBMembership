@@ -207,8 +207,8 @@ namespace RavenDBMembership.Provider
 				if (role != null)
 				{
 					var usernames = from u in session.Query<User>()
-									where u.Roles.Contains(role.Id)
-									select u.Username;
+                                    where u.Roles.Any(a => a == role.Id)
+                                    select u.Username;
 					return usernames.ToArray();
 				}
 				return null;
