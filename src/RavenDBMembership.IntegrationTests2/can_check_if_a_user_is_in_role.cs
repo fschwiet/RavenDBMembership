@@ -15,9 +15,9 @@ namespace RavenDBMembership.IntegrationTests2
         {
             given("a user", delegate
             {
-                var roleName = "usernameForRoleTest" + index++;
+                var username = "usernameForRoleTest" + index++;
 
-                var user = arrange(() => Membership.CreateUser(roleName, "password"));
+                var user = arrange(() => Membership.CreateUser(username, "password"));
                  
                 given("roles foo and bar", delegate
                 {
@@ -26,16 +26,18 @@ namespace RavenDBMembership.IntegrationTests2
 
                     when("user is in group foo", delegate
                     {
-                        arrange(() => Roles.AddUserToRole(roleName, "foo"));
+                        arrange(() => Roles.AddUserToRole(username, "foo"));
                         
                         then("the roles provider indicates user is in role foo", delegate
                         {
-                            expect(() => Roles.IsUserInRole(roleName, "foo"));
+                            expect(() => Roles.IsUserInRole(username, "foo"));
+                            expect(() => Roles.GetUsersInRole("foo").Contains(username));
                         });
 
-                        then("the roles provider indicates user is notin role bar", delegate
+                        then("the roles provider indicates user is not in role bar", delegate
                         {
-                            expect(() => !Roles.IsUserInRole(roleName, "bar"));
+                            expect(() => !Roles.IsUserInRole(username, "bar"));
+                            expect(() => !Roles.GetUsersInRole("foo").Contains(username));
                         });
                     });
                 });

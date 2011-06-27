@@ -52,4 +52,5 @@ task Configure {
 
 task FullTests {
     exec { & .\tools\NUnit\nunit-console.exe /exclude=AspnetUniversalMembershipProvider "$($buildDirectory)\RavenDBMembership.IntegrationTests.dll" }
+    exec { & .\tools\NUnit\nunit-console.exe /exclude=AspnetUniversalMembershipProvider "$($buildDirectory)\RavenDBMembership.IntegrationTests2.dll" }
 }
