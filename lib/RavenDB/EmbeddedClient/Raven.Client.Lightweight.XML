@@ -31,11 +31,10 @@
             </summary>
             <param name="key">The key.</param>
         </member>
-        <member name="M:Raven.Client.Connection.Async.IAsyncDatabaseCommands.MultiGetAsync(System.String[])">
+        <member name="M:Raven.Client.Connection.Async.IAsyncDatabaseCommands.MultiGetAsync(System.String[],System.String[])">
             <summary>
             Begins an async multi get operation
             </summary>
-            <param name="keys">The keys.</param>
         </member>
         <member name="M:Raven.Client.Connection.Async.IAsyncDatabaseCommands.GetDocumentsAsync(System.Int32,System.Int32)">
             <summary>
@@ -205,6 +204,11 @@
             Ensures that the silverlight startup tasks have run
             </summary>
         </member>
+        <member name="M:Raven.Client.Connection.Async.IAsyncDatabaseCommands.DisableAllCaching">
+            <summary>
+            Disable all caching within the given scope
+            </summary>
+        </member>
         <member name="P:Raven.Client.Connection.Async.IAsyncDatabaseCommands.OperationsHeaders">
             <summary>
             Gets or sets the operations headers.
@@ -215,9 +219,6 @@
             <summary>
             Initializes a new instance of the <see cref="T:Raven.Client.Connection.Async.AsyncServerClient"/> class.
             </summary>
-            <param name="url">The URL.</param>
-            <param name="convention">The convention.</param>
-            <param name="credentials">The credentials.</param>
         </member>
         <member name="M:Raven.Client.Connection.Async.AsyncServerClient.Dispose">
             <summary>
@@ -304,12 +305,10 @@
             <param name="key">The key.</param>
             <returns></returns>
         </member>
-        <member name="M:Raven.Client.Connection.Async.AsyncServerClient.MultiGetAsync(System.String[])">
+        <member name="M:Raven.Client.Connection.Async.AsyncServerClient.MultiGetAsync(System.String[],System.String[])">
             <summary>
             Begins an async multi get operation
             </summary>
-            <param name="keys">The keys.</param>
-            <returns></returns>
         </member>
         <member name="M:Raven.Client.Connection.Async.AsyncServerClient.GetDocumentsAsync(System.Int32,System.Int32)">
             <summary>
@@ -342,7 +341,6 @@
             <summary>
             Begins the async query.
             </summary>
-            <param name="query">A string representation of a Linq query</param>
         </member>
         <member name="M:Raven.Client.Connection.Async.AsyncServerClient.SuggestAsync(System.String,Raven.Abstractions.Data.SuggestionQuery)">
             <summary>
@@ -398,6 +396,11 @@
             </summary>
             <param name="key">The key.</param>
             <param name="etag">The etag.</param>
+        </member>
+        <member name="M:Raven.Client.Connection.Async.AsyncServerClient.DisableAllCaching">
+            <summary>
+            Disable all caching within the given scope
+            </summary>
         </member>
         <member name="M:Raven.Client.Connection.Async.AsyncServerClient.EnsureSilverlightStartUpAsync">
             <summary>
@@ -817,6 +820,11 @@
             Disable all caching within the given scope
             </summary>
         </member>
+        <member name="M:Raven.Client.Connection.IDatabaseCommands.MultiGet(Raven.Abstractions.Data.GetRequest[])">
+            <summary>
+            Perform a single POST requst containing multiple nested GET requests
+            </summary>
+        </member>
         <member name="P:Raven.Client.Connection.IDatabaseCommands.OperationsHeaders">
             <summary>
             Gets or sets the operations headers.
@@ -964,6 +972,11 @@
             Creates a new instance of <seealso cref="T:Raven.Client.Connection.Profiling.RequestResultArgs"/>
             </summary>
         </member>
+        <member name="P:Raven.Client.Connection.Profiling.RequestResultArgs.AdditionalInformation">
+            <summary>
+            Any additional information that might be required
+            </summary>
+        </member>
         <member name="P:Raven.Client.Connection.Profiling.RequestResultArgs.At">
             <summary>
             When the request completed
@@ -977,6 +990,11 @@
         <member name="P:Raven.Client.Connection.Profiling.RequestResultArgs.Url">
             <summary>
             The request Url
+            </summary>
+        </member>
+        <member name="P:Raven.Client.Connection.Profiling.RequestResultArgs.DurationMilliseconds">
+            <summary>
+            How long this request took
             </summary>
         </member>
         <member name="P:Raven.Client.Connection.Profiling.RequestResultArgs.Method">
@@ -1022,6 +1040,11 @@
         <member name="F:Raven.Client.Connection.Profiling.ProfilingInformation.At">
             <summary>
             The time when the session was created
+            </summary>
+        </member>
+        <member name="F:Raven.Client.Connection.Profiling.ProfilingInformation.DurationMilliseconds">
+            <summary>
+            The duration this session was opened
             </summary>
         </member>
         <member name="M:Raven.Client.Connection.Profiling.ProfilingInformation.#ctor(System.Nullable{System.Guid})">
@@ -1153,6 +1176,16 @@
         <member name="M:Raven.Client.Connection.SerializationHelper.ToJsonDocument(Raven.Json.Linq.RavenJObject)">
             <summary>
              Translate a collection of RavenJObject to JsonDocuments
+            </summary>
+        </member>
+        <member name="M:Raven.Client.Connection.SerializationHelper.ToQueryResult(Raven.Json.Linq.RavenJObject,System.String)">
+            <summary>
+            Translate a result for a query
+            </summary>
+        </member>
+        <member name="M:Raven.Client.Connection.SerializationHelper.DeserializeJsonDocument(System.String,System.String,System.Collections.Specialized.NameValueCollection,System.Net.HttpStatusCode)">
+            <summary>
+            Deserialize a request to a JsonDocument
             </summary>
         </member>
         <member name="T:Raven.Client.Connection.ServerClient">
@@ -1421,6 +1454,11 @@
             <param name="suggestionQuery">The suggestion query.</param>
             <returns></returns>
         </member>
+        <member name="M:Raven.Client.Connection.ServerClient.MultiGet(Raven.Abstractions.Data.GetRequest[])">
+            <summary>
+            Perform a single POST requst containing multiple nested GET requests
+            </summary>
+        </member>
         <member name="M:Raven.Client.Connection.ServerClient.GetTerms(System.String,System.String,System.String,System.Int32)">
             <summary>
              Get the possible terms for the specified field in the index 
@@ -1447,6 +1485,17 @@
         <member name="M:Raven.Client.Connection.ServerClient.DisableAllCaching">
             <summary>
             Disable all caching within the given scope
+            </summary>
+        </member>
+        <member name="M:Raven.Client.Connection.ServerClient.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:Raven.Client.Connection.ServerClient.Finalize">
+            <summary>
+            Allows an <see cref="T:System.Object"/> to attempt to free resources and perform other cleanup operations before the <see cref="T:System.Object"/> is reclaimed by garbage collection.
             </summary>
         </member>
         <member name="P:Raven.Client.Connection.ServerClient.ReplicationInformer">
@@ -1837,7 +1886,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Raven.Client.Document.IAbstractDocumentQuery`1.WhereEquals(Raven.Client.WhereEqualsParams)">
+        <member name="M:Raven.Client.Document.IAbstractDocumentQuery`1.WhereEquals(Raven.Client.WhereParams)">
             <summary>
               Matches exact value
             </summary>
@@ -2128,10 +2177,6 @@
             <summary>
               Initializes a new instance of the <see cref="T:Raven.Client.Document.DocumentQuery`1"/> class.
             </summary>
-            <param name="theSession">The session.</param>
-            <param name="databaseCommands">The database commands.</param>
-            <param name="indexName">Name of the index.</param>
-            <param name="projectionFields">The projection fields.</param>
         </member>
         <member name="M:Raven.Client.Document.AbstractDocumentQuery`2.#ctor(Raven.Client.Document.InMemoryDocumentSessionOperations,Raven.Client.Connection.IDatabaseCommands,Raven.Client.Connection.Async.IAsyncDatabaseCommands,System.String,System.String[],Raven.Client.Listeners.IDocumentQueryListener[])">
             <param name = "indexName">Name of the index.</param>
@@ -2203,6 +2248,12 @@
             </summary>
             <param name = "waitTimeout">The wait timeout.</param>
             <returns></returns>
+        </member>
+        <member name="M:Raven.Client.Document.AbstractDocumentQuery`2.Lazily">
+            <summary>
+            Register the query as a lazy query in the session and return a lazy
+            instance that will evaluate the query only when needed
+            </summary>
         </member>
         <member name="M:Raven.Client.Document.AbstractDocumentQuery`2.GetProjectionFields">
             <summary>
@@ -2316,7 +2367,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Raven.Client.Document.AbstractDocumentQuery`2.WhereEquals(Raven.Client.WhereEqualsParams)">
+        <member name="M:Raven.Client.Document.AbstractDocumentQuery`2.WhereEquals(Raven.Client.WhereParams)">
             <summary>
               Matches exact value
             </summary>
@@ -2559,12 +2610,6 @@
             Called externally to raise the after query executed callback
             </summary>
         </member>
-        <member name="M:Raven.Client.Document.AbstractDocumentQuery`2.GetQueryResult">
-            <summary>
-              Gets the query result.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:Raven.Client.Document.AbstractDocumentQuery`2.GenerateIndexQuery(System.String)">
             <summary>
               Generates the index query.
@@ -2720,7 +2765,7 @@
               Defaults to allow wildcards only if analyzed
             </remarks>
         </member>
-        <member name="M:Raven.Client.IDocumentQueryBase`2.WhereEquals(Raven.Client.WhereEqualsParams)">
+        <member name="M:Raven.Client.IDocumentQueryBase`2.WhereEquals(Raven.Client.WhereParams)">
             <summary>
               Matches exact value
             </summary>
@@ -3056,7 +3101,7 @@
             	Defaults to allow wildcards only if analyzed
             </remarks>
         </member>
-        <member name="M:Raven.Client.Document.AsyncDocumentQuery`1.Raven#Client#IDocumentQueryBase{T@Raven#Client#IAsyncDocumentQuery{T}}#WhereEquals(Raven.Client.WhereEqualsParams)">
+        <member name="M:Raven.Client.Document.AsyncDocumentQuery`1.Raven#Client#IDocumentQueryBase{T@Raven#Client#IAsyncDocumentQuery{T}}#WhereEquals(Raven.Client.WhereParams)">
             <summary>
             	Matches exact value
             </summary>
@@ -3707,6 +3752,18 @@
             Interface for document session using async approaches
             </summary>
         </member>
+        <member name="M:Raven.Client.IAsyncDocumentSession.Include(System.String)">
+            <summary>
+            Begin a load while including the specified path 
+            </summary>
+            <param name="path">The path.</param>
+        </member>
+        <member name="M:Raven.Client.IAsyncDocumentSession.Include``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            Begin a load while including the specified path 
+            </summary>
+            <param name="path">The path.</param>
+        </member>
         <member name="M:Raven.Client.IAsyncDocumentSession.Store(System.Object)">
             <summary>
             Stores the specified entity in the session. The entity will be saved when <see cref="M:Raven.Client.IDocumentSession.SaveChanges"/> is called.
@@ -3949,6 +4006,18 @@
             Dynamically query RavenDB using Lucene syntax
             </summary>
         </member>
+        <member name="M:Raven.Client.Document.Async.AsyncDocumentSession.Include(System.String)">
+            <summary>
+            Begin a load while including the specified path 
+            </summary>
+            <param name="path">The path.</param>
+        </member>
+        <member name="M:Raven.Client.Document.Async.AsyncDocumentSession.Include``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            Begin a load while including the specified path 
+            </summary>
+            <param name="path">The path.</param>
+        </member>
         <member name="M:Raven.Client.Document.Async.AsyncDocumentSession.LoadAsync``1(System.ValueType)">
             <summary>
             Loads the specified entities with the specified id after applying
@@ -3976,6 +4045,11 @@
             </summary>
             <param name="ids">The ids.</param>
             <returns></returns>
+        </member>
+        <member name="M:Raven.Client.Document.Async.AsyncDocumentSession.LoadAsyncInternal``1(System.String[],System.String[])">
+            <summary>
+            Begins the async multi load operation
+            </summary>
         </member>
         <member name="M:Raven.Client.Document.Async.AsyncDocumentSession.SaveChangesAsync">
             <summary>
@@ -4031,6 +4105,366 @@
             <remarks>
             Those operations are rarely needed, and have been moved to a separate 
             property to avoid cluttering the API
+            </remarks>
+        </member>
+        <member name="T:Raven.Client.Document.AsyncMultiLoaderWithInclude`1">
+            <summary>
+            Fluent implementation for specifying include paths
+            for loading documents
+            </summary>
+        </member>
+        <member name="T:Raven.Client.Document.IAsyncLoaderWithInclude`1">
+            <summary>
+            Fluent interface for specifying include paths
+            for loading documents
+            </summary>
+        </member>
+        <member name="M:Raven.Client.Document.IAsyncLoaderWithInclude`1.Include(System.String)">
+            <summary>
+            Includes the specified path.
+            </summary>
+            <param name="path">The path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raven.Client.Document.IAsyncLoaderWithInclude`1.Include(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Includes the specified path.
+            </summary>
+            <param name="path">The path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raven.Client.Document.IAsyncLoaderWithInclude`1.LoadAsync(System.String[])">
+            <summary>
+            Loads the specified ids.
+            </summary>
+            <param name="ids">The ids.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raven.Client.Document.IAsyncLoaderWithInclude`1.Load(System.String)">
+            <summary>
+            Loads the specified id.
+            </summary>
+            <param name="id">The id.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raven.Client.Document.IAsyncLoaderWithInclude`1.Load(System.ValueType)">
+            <summary>
+            Loads the specified entities with the specified id after applying
+            conventions on the provided id to get the real document id.
+            </summary>
+            <remarks>
+            This method allows you to call:
+            Load{Post}(1)
+            And that call will internally be translated to 
+            Load{Post}("posts/1");
+            
+            Or whatever your conventions specify.
+            </remarks>
+        </member>
+        <member name="M:Raven.Client.Document.IAsyncLoaderWithInclude`1.Load``1(System.String[])">
+            <summary>
+            Loads the specified ids.
+            </summary>
+            <param name="ids">The ids.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raven.Client.Document.IAsyncLoaderWithInclude`1.Load``1(System.String)">
+            <summary>
+            Loads the specified id.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="id">The id.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raven.Client.Document.IAsyncLoaderWithInclude`1.Load``1(System.ValueType)">
+            <summary>
+            Loads the specified entities with the specified id after applying
+            conventions on the provided id to get the real document id.
+            </summary>
+            <remarks>
+            This method allows you to call:
+            Load{Post}(1)
+            And that call will internally be translated to 
+            Load{Post}("posts/1");
+            
+            Or whatever your conventions specify.
+            </remarks>
+        </member>
+        <member name="M:Raven.Client.Document.AsyncMultiLoaderWithInclude`1.Include(System.String)">
+            <summary>
+            Includes the specified path.
+            </summary>
+            <param name="path">The path.</param>
+        </member>
+        <member name="M:Raven.Client.Document.AsyncMultiLoaderWithInclude`1.Include(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Includes the specified path.
+            </summary>
+            <param name="path">The path.</param>
+        </member>
+        <member name="M:Raven.Client.Document.AsyncMultiLoaderWithInclude`1.LoadAsync(System.String[])">
+            <summary>
+            Loads the specified ids.
+            </summary>
+            <param name="ids">The ids.</param>
+        </member>
+        <member name="M:Raven.Client.Document.AsyncMultiLoaderWithInclude`1.Load(System.String)">
+            <summary>
+            Loads the specified id.
+            </summary>
+            <param name="id">The id.</param>
+        </member>
+        <member name="M:Raven.Client.Document.AsyncMultiLoaderWithInclude`1.Load(System.ValueType)">
+            <summary>
+            Loads the specified entities with the specified id after applying
+            conventions on the provided id to get the real document id.
+            </summary>
+            <remarks>
+            This method allows you to call:
+            Load{Post}(1)
+            And that call will internally be translated to 
+            Load{Post}("posts/1");
+            
+            Or whatever your conventions specify.
+            </remarks>
+        </member>
+        <member name="M:Raven.Client.Document.AsyncMultiLoaderWithInclude`1.#ctor(Raven.Client.Document.Async.AsyncDocumentSession)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Raven.Client.Document.MultiLoaderWithInclude`1"/> class.
+            </summary>
+            <param name="session">The session.</param>
+        </member>
+        <member name="M:Raven.Client.Document.AsyncMultiLoaderWithInclude`1.Load``1(System.String[])">
+            <summary>
+            Loads the specified ids.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="ids">The ids.</param>
+        </member>
+        <member name="M:Raven.Client.Document.AsyncMultiLoaderWithInclude`1.Load``1(System.String)">
+            <summary>
+            Loads the specified id.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="id">The id.</param>
+        </member>
+        <member name="M:Raven.Client.Document.AsyncMultiLoaderWithInclude`1.Load``1(System.ValueType)">
+            <summary>
+            Loads the specified entities with the specified id after applying
+            conventions on the provided id to get the real document id.
+            </summary>
+            <remarks>
+            This method allows you to call:
+            Load{Post}(1)
+            And that call will internally be translated to 
+            Load{Post}("posts/1");
+            
+            Or whatever your conventions specify.
+            </remarks>
+        </member>
+        <member name="T:Raven.Client.Document.Batches.ILazyLoaderWithInclude`1">
+            <summary>
+            Fluent interface for specifying include paths
+            for loading documents lazily
+            </summary>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.ILazyLoaderWithInclude`1.Include(System.String)">
+            <summary>
+            Includes the specified path.
+            </summary>
+            <param name="path">The path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.ILazyLoaderWithInclude`1.Include(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Includes the specified path.
+            </summary>
+            <param name="path">The path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.ILazyLoaderWithInclude`1.Load(System.String[])">
+            <summary>
+            Loads the specified ids.
+            </summary>
+            <param name="ids">The ids.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.ILazyLoaderWithInclude`1.Load(System.String)">
+            <summary>
+            Loads the specified id.
+            </summary>
+            <param name="id">The id.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.ILazyLoaderWithInclude`1.Load(System.ValueType)">
+            <summary>
+            Loads the specified entities with the specified id after applying
+            conventions on the provided id to get the real document id.
+            </summary>
+            <remarks>
+            This method allows you to call:
+            Load{Post}(1)
+            And that call will internally be translated to 
+            Load{Post}("posts/1");
+            
+            Or whatever your conventions specify.
+            </remarks>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.ILazyLoaderWithInclude`1.Load``1(System.String[])">
+            <summary>
+            Loads the specified ids.
+            </summary>
+            <param name="ids">The ids.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.ILazyLoaderWithInclude`1.Load``1(System.String)">
+            <summary>
+            Loads the specified id.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="id">The id.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.ILazyLoaderWithInclude`1.Load``1(System.ValueType)">
+            <summary>
+            Loads the specified entities with the specified id after applying
+            conventions on the provided id to get the real document id.
+            </summary>
+            <remarks>
+            This method allows you to call:
+            Load{Post}(1)
+            And that call will internally be translated to 
+            Load{Post}("posts/1");
+            
+            Or whatever your conventions specify.
+            </remarks>
+        </member>
+        <member name="T:Raven.Client.Document.Batches.ILazySessionOperations">
+            <summary>
+            Specify interface for lazy operation for the session
+            </summary>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.ILazySessionOperations.Include(System.String)">
+            <summary>
+            Begin a load while including the specified path 
+            </summary>
+            <param name="path">The path.</param>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.ILazySessionOperations.Include``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            Begin a load while including the specified path 
+            </summary>
+            <param name="path">The path.</param>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.ILazySessionOperations.Load``1(System.String[])">
+            <summary>
+            Loads the specified ids.
+            </summary>
+            <param name="ids">The ids.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.ILazySessionOperations.Load``1(System.String)">
+            <summary>
+            Loads the specified id.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="id">The id.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.ILazySessionOperations.Load``1(System.ValueType)">
+            <summary>
+            Loads the specified entities with the specified id after applying
+            conventions on the provided id to get the real document id.
+            </summary>
+            <remarks>
+            This method allows you to call:
+            Load{Post}(1)
+            And that call will internally be translated to 
+            Load{Post}("posts/1");
+            
+            Or whatever your conventions specify.
+            </remarks>
+        </member>
+        <member name="T:Raven.Client.Document.Batches.IEagerSessionOperations">
+            <summary>
+            Allow to perform eager operations on the session
+            </summary>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.IEagerSessionOperations.ExecuteAllPendingLazyOperations">
+            <summary>
+            Execute all the lazy requests pending within this session
+            </summary>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.LazyMultiLoaderWithInclude`1.Include(System.String)">
+            <summary>
+            Includes the specified path.
+            </summary>
+            <param name="path">The path.</param>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.LazyMultiLoaderWithInclude`1.Include(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Includes the specified path.
+            </summary>
+            <param name="path">The path.</param>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.LazyMultiLoaderWithInclude`1.Load(System.String[])">
+            <summary>
+            Loads the specified ids.
+            </summary>
+            <param name="ids">The ids.</param>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.LazyMultiLoaderWithInclude`1.Load(System.String)">
+            <summary>
+            Loads the specified id.
+            </summary>
+            <param name="id">The id.</param>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.LazyMultiLoaderWithInclude`1.Load(System.ValueType)">
+            <summary>
+            Loads the specified entities with the specified id after applying
+            conventions on the provided id to get the real document id.
+            </summary>
+            <remarks>
+            This method allows you to call:
+            Load{Post}(1)
+            And that call will internally be translated to 
+            Load{Post}("posts/1");
+            
+            Or whatever your conventions specify.
+            </remarks>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.LazyMultiLoaderWithInclude`1.#ctor(Raven.Client.Document.DocumentSession)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Raven.Client.Document.Batches.LazyMultiLoaderWithInclude`1"/> class.
+            </summary>
+            <param name="session">The session.</param>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.LazyMultiLoaderWithInclude`1.Load``1(System.String[])">
+            <summary>
+            Loads the specified ids.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="ids">The ids.</param>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.LazyMultiLoaderWithInclude`1.Load``1(System.String)">
+            <summary>
+            Loads the specified id.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="id">The id.</param>
+        </member>
+        <member name="M:Raven.Client.Document.Batches.LazyMultiLoaderWithInclude`1.Load``1(System.ValueType)">
+            <summary>
+            Loads the specified entities with the specified id after applying
+            conventions on the provided id to get the real document id.
+            </summary>
+            <remarks>
+            This method allows you to call:
+            Load{Post}(1)
+            And that call will internally be translated to 
+            Load{Post}("posts/1");
+            
+            Or whatever your conventions specify.
             </remarks>
         </member>
         <member name="T:Raven.Client.Document.DefaultRavenContractResolver">
@@ -4128,6 +4562,11 @@
             Register an action to customize the json serializer used by the <see cref="T:Raven.Client.Document.DocumentStore"/>
             </summary>
         </member>
+        <member name="P:Raven.Client.Document.DocumentConvention.DisableProfiling">
+            <summary>
+            Disable all profiling support
+            </summary>
+        </member>
         <member name="P:Raven.Client.Document.DocumentConvention.IdentityTypeConvertors">
             <summary>
              A list of type converters that can be used to translate the document key (string)
@@ -4209,6 +4648,12 @@
             </summary>
             <value>The document key generator.</value>
         </member>
+        <member name="P:Raven.Client.Document.DocumentConvention.UseParallelMultiGet">
+            <summary>
+            Instruct RavenDB to parallel Multi Get processing 
+            when handling lazy requests
+            </summary>
+        </member>
         <member name="T:Raven.Client.Document.ConsistencyOptions">
             <summary>
             The consistency options for all queries, fore more details about the consistency options, see:
@@ -4245,6 +4690,12 @@
             </summary>
             <typeparam name="TProjection">The type of the projection.</typeparam>
             <param name="fields">The fields.</param>
+        </member>
+        <member name="M:Raven.Client.IDocumentQuery`1.Lazily">
+            <summary>
+            Register the query as a lazy query in the session and return a lazy
+            instance that will evaluate the query only when needed
+            </summary>
         </member>
         <member name="P:Raven.Client.IDocumentQuery`1.QueryResult">
             <summary>
@@ -4370,7 +4821,7 @@
             	Defaults to allow wildcards only if analyzed
             </remarks>
         </member>
-        <member name="M:Raven.Client.Document.DocumentQuery`1.Raven#Client#IDocumentQueryBase{T@Raven#Client#IDocumentQuery{T}}#WhereEquals(Raven.Client.WhereEqualsParams)">
+        <member name="M:Raven.Client.Document.DocumentQuery`1.Raven#Client#IDocumentQueryBase{T@Raven#Client#IDocumentQuery{T}}#WhereEquals(Raven.Client.WhereParams)">
             <summary>
             	Matches exact value
             </summary>
@@ -4780,10 +5231,61 @@
             </summary>
             <value>The async database commands.</value>
         </member>
+        <member name="P:Raven.Client.ISyncAdvancedSessionOperation.Lazily">
+            <summary>
+            Access the lazy operations
+            </summary>
+        </member>
+        <member name="P:Raven.Client.ISyncAdvancedSessionOperation.Eagerly">
+            <summary>
+            Access the eager operations
+            </summary>
+        </member>
         <member name="M:Raven.Client.Document.DocumentSession.#ctor(Raven.Client.Document.DocumentStore,Raven.Client.Document.DocumentSessionListeners,System.Guid,Raven.Client.Connection.IDatabaseCommands,Raven.Client.Connection.Async.IAsyncDatabaseCommands)">
             <summary>
             Initializes a new instance of the <see cref="T:Raven.Client.Document.DocumentSession"/> class.
             </summary>
+        </member>
+        <member name="M:Raven.Client.Document.DocumentSession.Raven#Client#Document#Batches#ILazySessionOperations#Include``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            Begin a load while including the specified path 
+            </summary>
+            <param name="path">The path.</param>
+        </member>
+        <member name="M:Raven.Client.Document.DocumentSession.Raven#Client#Document#Batches#ILazySessionOperations#Load``1(System.String[])">
+            <summary>
+            Loads the specified ids.
+            </summary>
+            <param name="ids">The ids.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raven.Client.Document.DocumentSession.Raven#Client#Document#Batches#ILazySessionOperations#Load``1(System.String)">
+            <summary>
+            Loads the specified id.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="id">The id.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raven.Client.Document.DocumentSession.Raven#Client#Document#Batches#ILazySessionOperations#Include(System.String)">
+            <summary>
+            Begin a load while including the specified path 
+            </summary>
+            <param name="path">The path.</param>
+        </member>
+        <member name="M:Raven.Client.Document.DocumentSession.Raven#Client#Document#Batches#ILazySessionOperations#Load``1(System.ValueType)">
+            <summary>
+            Loads the specified entities with the specified id after applying
+            conventions on the provided id to get the real document id.
+            </summary>
+            <remarks>
+            This method allows you to call:
+            Load{Post}(1)
+            And that call will internally be translated to 
+            Load{Post}("posts/1");
+            
+            Or whatever your conventions specify.
+            </remarks>
         </member>
         <member name="M:Raven.Client.Document.DocumentSession.Load``1(System.String)">
             <summary>
@@ -4939,6 +5441,11 @@
             Create a new query for <typeparam name="T"/>
             </summary>
         </member>
+        <member name="M:Raven.Client.Document.DocumentSession.LazyLoadInternal``1(System.String[],System.String[])">
+            <summary>
+            Register to lazily load documents and include
+            </summary>
+        </member>
         <member name="P:Raven.Client.Document.DocumentSession.DatabaseCommands">
             <summary>
             Gets the database commands.
@@ -4950,6 +5457,16 @@
             Gets the async database commands.
             </summary>
             <value>The async database commands.</value>
+        </member>
+        <member name="P:Raven.Client.Document.DocumentSession.Lazily">
+            <summary>
+            Access the lazy operations
+            </summary>
+        </member>
+        <member name="P:Raven.Client.Document.DocumentSession.Eagerly">
+            <summary>
+            Access the eager operations
+            </summary>
         </member>
         <member name="P:Raven.Client.Document.DocumentSession.Advanced">
             <summary>
@@ -5301,11 +5818,6 @@
             The resource manager id for the document store.
             IMPORTANT: Using Guid.NewGuid() to set this value is almost certainly a mistake, you should set
             it to a value that remains consistent between restart of the system.
-            </summary>
-        </member>
-        <member name="P:Raven.Client.Document.DocumentStore.DisableProfiling">
-            <summary>
-            Disable all profiling support
             </summary>
         </member>
         <member name="E:Raven.Client.Document.DocumentStore.AfterDispose">
@@ -5782,7 +6294,7 @@
             	Defaults to allow wildcards only if analyzed
             </remarks>
         </member>
-        <member name="M:Raven.Client.Document.ShardedDocumentQuery`1.WhereEquals(Raven.Client.WhereEqualsParams)">
+        <member name="M:Raven.Client.Document.ShardedDocumentQuery`1.WhereEquals(Raven.Client.WhereParams)">
             <summary>
             	Matches exact value
             </summary>
@@ -5989,6 +6501,12 @@
             </summary>
             <typeparam name="TProjection">The type of the projection.</typeparam>
             <param name="fields">The fields.</param>
+        </member>
+        <member name="M:Raven.Client.Document.ShardedDocumentQuery`1.Lazily">
+            <summary>
+            Register the query as a lazy query in the session and return a lazy
+            instance that will evaluate the query only when needed
+            </summary>
         </member>
         <member name="M:Raven.Client.Document.ShardedDocumentQuery`1.ToListAsync">
             <summary>
@@ -7342,6 +7860,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Raven.Client.Linq.IRavenQueryProvider.Lazily``1(System.Linq.Expressions.Expression)">
+            <summary>
+            Convert the Linq query to a lazy Lucene query
+            </summary>
+        </member>
         <member name="P:Raven.Client.Linq.IRavenQueryProvider.IndexName">
             <summary>
             Gets the name of the index.
@@ -7518,6 +8041,12 @@
             Marker method for allowing hierarchical queries on the server.
             </summary>
         </member>
+        <member name="M:Raven.Client.Linq.LinqExtensions.Lazily``1(System.Linq.IQueryable{``0})">
+            <summary>
+            Register the query as a lazy query in the session and return a lazy
+            instance that will evaluate the query only when needed
+            </summary>
+        </member>
         <member name="M:Raven.Client.Linq.LinqExtensions.ToListAsync``1(System.Linq.IQueryable{``0})">
             <summary>
             Returns a list of results for a query asynchronously. 
@@ -7650,6 +8179,12 @@
         <member name="M:Raven.Client.Linq.RavenQueryProvider`1.ToAsyncLuceneQuery``1(System.Linq.Expressions.Expression)">
             <summary>
             Convert the expression to a Lucene query
+            </summary>
+        </member>
+        <member name="M:Raven.Client.Linq.RavenQueryProvider`1.Lazily``1(System.Linq.Expressions.Expression)">
+            <summary>
+            Register the query as a lazy query in the session and return a lazy
+            instance that will evaluate the query only when needed
             </summary>
         </member>
         <member name="P:Raven.Client.Linq.RavenQueryProvider`1.CustomizedQuery">
@@ -7966,6 +8501,16 @@
             Gets the async database commands.
             </summary>
             <value>The async database commands.</value>
+        </member>
+        <member name="P:Raven.Client.Shard.ShardedDocumentSession.Lazily">
+            <summary>
+            Access the lazy operations
+            </summary>
+        </member>
+        <member name="P:Raven.Client.Shard.ShardedDocumentSession.Eagerly">
+            <summary>
+            Access the eager operations
+            </summary>
         </member>
         <member name="P:Raven.Client.Shard.ShardedDocumentSession.DocumentStore">
             <summary>
@@ -8385,37 +8930,37 @@
             </returns>
             <param name="obj">The object for which to get a hash code.</param><exception cref="T:System.ArgumentNullException">The type of <paramref name="obj"/> is a reference type and <paramref name="obj"/> is null.</exception>
         </member>
-        <member name="T:Raven.Client.WhereEqualsParams">
+        <member name="T:Raven.Client.WhereParams">
             <summary>
             Parameters for the Where Equals call
             </summary>
         </member>
-        <member name="M:Raven.Client.WhereEqualsParams.#ctor">
+        <member name="M:Raven.Client.WhereParams.#ctor">
             <summary>
             Create a new instance 
             </summary>
         </member>
-        <member name="P:Raven.Client.WhereEqualsParams.FieldName">
+        <member name="P:Raven.Client.WhereParams.FieldName">
             <summary>
             The field name
             </summary>
         </member>
-        <member name="P:Raven.Client.WhereEqualsParams.Value">
+        <member name="P:Raven.Client.WhereParams.Value">
             <summary>
             The field value
             </summary>
         </member>
-        <member name="P:Raven.Client.WhereEqualsParams.IsAnalyzed">
+        <member name="P:Raven.Client.WhereParams.IsAnalyzed">
             <summary>
             Should the field be analyzed
             </summary>
         </member>
-        <member name="P:Raven.Client.WhereEqualsParams.AllowWildcards">
+        <member name="P:Raven.Client.WhereParams.AllowWildcards">
             <summary>
             Should the field allow wildcards
             </summary>
         </member>
-        <member name="P:Raven.Client.WhereEqualsParams.IsNestedPath">
+        <member name="P:Raven.Client.WhereParams.IsNestedPath">
             <summary>
             Is this a root property or not?
             </summary>
