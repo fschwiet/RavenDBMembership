@@ -31,7 +31,7 @@
             </summary>
             <param name="key">The key.</param>
         </member>
-        <member name="M:Raven.Client.Connection.Async.IAsyncDatabaseCommands.MultiGetAsync(System.String[],System.String[])">
+        <member name="M:Raven.Client.Connection.Async.IAsyncDatabaseCommands.GetAsync(System.String[],System.String[])">
             <summary>
             Begins an async multi get operation
             </summary>
@@ -64,12 +64,6 @@
             <param name="index">The index.</param>
             <param name="query">The query.</param>
             <param name="includes">The include paths</param>
-        </member>
-        <member name="M:Raven.Client.Connection.Async.IAsyncDatabaseCommands.LinearQueryAsync(System.String,System.Int32,System.Int32)">
-            <summary>
-            Begins the async query.
-            </summary>
-            <param name="query">A string representation of a Linq query</param>
         </member>
         <member name="M:Raven.Client.Connection.Async.IAsyncDatabaseCommands.BatchAsync(Raven.Abstractions.Commands.ICommandData[])">
             <summary>
@@ -161,13 +155,6 @@
             Gets the list of databases from the server asyncronously
             </summary>
         </member>
-        <member name="M:Raven.Client.Connection.Async.IAsyncDatabaseCommands.GetCollectionsAsync(System.Int32,System.Int32)">
-            <summary>
-            Gets the list of collections from the server asyncronously
-            </summary>
-            <param name="start">Paging start</param>
-            <param name="pageSize">Size of the page.</param>
-        </member>
         <member name="M:Raven.Client.Connection.Async.IAsyncDatabaseCommands.PutAttachmentAsync(System.String,System.Nullable{System.Guid},System.Byte[],Raven.Json.Linq.RavenJObject)">
             <summary>
             Puts the attachment with the specified key asyncronously
@@ -207,6 +194,11 @@
         <member name="M:Raven.Client.Connection.Async.IAsyncDatabaseCommands.DisableAllCaching">
             <summary>
             Disable all caching within the given scope
+            </summary>
+        </member>
+        <member name="M:Raven.Client.Connection.Async.IAsyncDatabaseCommands.MultiGetAsync(Raven.Abstractions.Data.GetRequest[])">
+            <summary>
+            Perform a single POST requst containing multiple nested GET requests
             </summary>
         </member>
         <member name="P:Raven.Client.Connection.Async.IAsyncDatabaseCommands.OperationsHeaders">
@@ -305,7 +297,7 @@
             <param name="key">The key.</param>
             <returns></returns>
         </member>
-        <member name="M:Raven.Client.Connection.Async.AsyncServerClient.MultiGetAsync(System.String[],System.String[])">
+        <member name="M:Raven.Client.Connection.Async.AsyncServerClient.GetAsync(System.String[],System.String[])">
             <summary>
             Begins an async multi get operation
             </summary>
@@ -317,6 +309,11 @@
             <remarks>
             This is primarily useful for administration of a database
             </remarks>
+        </member>
+        <member name="M:Raven.Client.Connection.Async.AsyncServerClient.MultiGetAsync(Raven.Abstractions.Data.GetRequest[])">
+            <summary>
+            Perform a single POST requst containing multiple nested GET requests
+            </summary>
         </member>
         <member name="M:Raven.Client.Connection.Async.AsyncServerClient.GetDocumentsStartingWithAsync(System.String,System.Int32,System.Int32)">
             <summary>
@@ -336,11 +333,6 @@
             <param name="index">The index.</param>
             <param name="query">The query.</param>
             <param name="includes">The include paths</param>
-        </member>
-        <member name="M:Raven.Client.Connection.Async.AsyncServerClient.LinearQueryAsync(System.String,System.Int32,System.Int32)">
-            <summary>
-            Begins the async query.
-            </summary>
         </member>
         <member name="M:Raven.Client.Connection.Async.AsyncServerClient.SuggestAsync(System.String,Raven.Abstractions.Data.SuggestionQuery)">
             <summary>
@@ -366,13 +358,6 @@
             <summary>
             Gets the list of databases from the server asyncronously
             </summary>
-        </member>
-        <member name="M:Raven.Client.Connection.Async.AsyncServerClient.GetCollectionsAsync(System.Int32,System.Int32)">
-            <summary>
-            Gets the list of collections from the server asyncronously
-            </summary>
-            <param name="start">Paging start</param>
-            <param name="pageSize">Size of the page.</param>
         </member>
         <member name="M:Raven.Client.Connection.Async.AsyncServerClient.PutAttachmentAsync(System.String,System.Nullable{System.Guid},System.Byte[],Raven.Json.Linq.RavenJObject)">
             <summary>
@@ -1143,8 +1128,8 @@
         <member name="M:Raven.Client.Connection.ReplicationInformer.RefreshReplicationInformation(Raven.Client.Connection.ServerClient)">
             <summary>
             Refreshes the replication information.
+            Expert use only.
             </summary>
-            <param name="commands">The commands.</param>
         </member>
         <member name="M:Raven.Client.Connection.ReplicationInformer.ResetFailureCount(System.String)">
             <summary>
@@ -7632,21 +7617,6 @@
         <member name="M:Raven.Client.Indexes.IndexDefinitionHelper.PruneToFailureLinqQueryAsStringToWorkableCode``1(System.Linq.Expressions.LambdaExpression,Raven.Client.Document.DocumentConvention,System.String,System.Boolean)">
             <summary>
             Perform the actual generation
-            </summary>
-        </member>
-        <member name="T:Raven.Client.Indexes.RavenCollections">
-            <summary>
-            Create an index that aggregate all the document collections in the database
-            </summary>
-        </member>
-        <member name="M:Raven.Client.Indexes.RavenCollections.CreateIndexDefinition">
-            <summary>
-            Returns the index definition
-            </summary>
-        </member>
-        <member name="P:Raven.Client.Indexes.RavenCollections.IndexName">
-            <summary>
-            Returns the index name
             </summary>
         </member>
         <member name="T:Raven.Client.Indexes.RavenDocumentsByEntityName">
