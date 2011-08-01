@@ -514,6 +514,11 @@
             Mostly used for testing
             </summary>
         </member>
+        <member name="M:Raven.Client.Connection.HttpJsonRequestFactory.#ctor">
+            <summary>
+            default ctor
+            </summary>
+        </member>
         <member name="M:Raven.Client.Connection.HttpJsonRequestFactory.Dispose">
             <summary>
             Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -8082,6 +8087,11 @@
             </summary>
         </member>
         <member name="M:Raven.Client.Linq.LinqExtensions.WhereEntityIs``1(System.Collections.Generic.IEnumerable{System.Object},System.String[])">
+            <summary>
+            Marker method for allowing complex (multi entity) queries on the server.
+            </summary>
+        </member>
+        <member name="M:Raven.Client.Linq.LinqExtensions.IfEntityIs``1(System.Object,System.String)">
             <summary>
             Marker method for allowing complex (multi entity) queries on the server.
             </summary>
