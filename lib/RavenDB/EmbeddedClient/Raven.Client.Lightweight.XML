@@ -2005,11 +2005,9 @@
         <member name="M:Raven.Client.Document.IAbstractDocumentQuery`1.OrderBy(System.String[])">
             <summary>
               Order the results by the specified fields
-            </summary>
-            <remarks>
               The fields are the names of the fields to sort, defaulting to sorting by ascending.
               You can prefix a field name with '-' to indicate sorting by descending or '+' to sort by ascending
-            </remarks>
+            </summary>
             <param name = "fields">The fields.</param>
         </member>
         <member name="M:Raven.Client.Document.IAbstractDocumentQuery`1.WaitForNonStaleResultsAsOfNow">
@@ -2492,11 +2490,9 @@
         <member name="M:Raven.Client.Document.AbstractDocumentQuery`2.OrderBy(System.String[])">
             <summary>
               Order the results by the specified fields
-            </summary>
-            <remarks>
               The fields are the names of the fields to sort, defaulting to sorting by ascending.
               You can prefix a field name with '-' to indicate sorting by descending or '+' to sort by ascending
-            </remarks>
+            </summary>
             <param name = "fields">The fields.</param>
         </member>
         <member name="M:Raven.Client.Document.AbstractDocumentQuery`2.WaitForNonStaleResultsAsOfNow">
@@ -2896,11 +2892,9 @@
         <member name="M:Raven.Client.IDocumentQueryBase`2.OrderBy(System.String[])">
             <summary>
               Order the results by the specified fields
-            </summary>
-            <remarks>
               The fields are the names of the fields to sort, defaulting to sorting by ascending.
               You can prefix a field name with '-' to indicate sorting by descending or '+' to sort by ascending
-            </remarks>
+            </summary>
             <param name = "fields">The fields.</param>
         </member>
         <member name="M:Raven.Client.IDocumentQueryBase`2.WaitForNonStaleResultsAsOfNow">
@@ -3232,11 +3226,9 @@
         <member name="M:Raven.Client.Document.AsyncDocumentQuery`1.Raven#Client#IDocumentQueryBase{T@Raven#Client#IAsyncDocumentQuery{T}}#OrderBy(System.String[])">
             <summary>
             Order the results by the specified fields
-            </summary>
-            <remarks>
             The fields are the names of the fields to sort, defaulting to sorting by ascending.
             You can prefix a field name with '-' to indicate sorting by descending or '+' to sort by ascending
-            </remarks>
+            </summary>
             <param name="fields">The fields.</param>
         </member>
         <member name="M:Raven.Client.Document.AsyncDocumentQuery`1.Raven#Client#IDocumentQueryBase{T@Raven#Client#IAsyncDocumentQuery{T}}#WaitForNonStaleResultsAsOfNow">
@@ -4110,6 +4102,11 @@
             Dynamically queries RavenDB using LINQ
             </summary>
             <typeparam name="T">The result of the query</typeparam>
+        </member>
+        <member name="M:Raven.Client.Document.Async.AsyncDocumentSession.Raven#Client#Linq#IDocumentQueryGenerator#Query``1(System.String)">
+            <summary>
+            Create a new query for <typeparam name="T"/>
+            </summary>
         </member>
         <member name="M:Raven.Client.Document.Async.AsyncDocumentSession.AsyncQuery``1(System.String)">
             <summary>
@@ -5013,11 +5010,9 @@
         <member name="M:Raven.Client.Document.DocumentQuery`1.Raven#Client#IDocumentQueryBase{T@Raven#Client#IDocumentQuery{T}}#OrderBy(System.String[])">
             <summary>
             Order the results by the specified fields
-            </summary>
-            <remarks>
             The fields are the names of the fields to sort, defaulting to sorting by ascending.
             You can prefix a field name with '-' to indicate sorting by descending or '+' to sort by ascending
-            </remarks>
+            </summary>
             <param name="fields">The fields.</param>
         </member>
         <member name="M:Raven.Client.Document.DocumentQuery`1.Raven#Client#IDocumentQueryBase{T@Raven#Client#IDocumentQuery{T}}#WaitForNonStaleResultsAsOfNow">
@@ -6499,12 +6494,9 @@
         <member name="M:Raven.Client.Document.ShardedDocumentQuery`1.OrderBy(System.String[])">
             <summary>
             Order the results by the specified fields
-            </summary>
-            <remarks>
             The fields are the names of the fields to sort, defaulting to sorting by ascending.
             You can prefix a field name with '-' to indicate sorting by descending or '+' to sort by ascending
-            </remarks>
-            <param name="fields">The fields.</param>
+            </summary>/// <param name="fields">The fields.</param>
         </member>
         <member name="M:Raven.Client.Document.ShardedDocumentQuery`1.WaitForNonStaleResultsAsOfNow">
             <summary>
