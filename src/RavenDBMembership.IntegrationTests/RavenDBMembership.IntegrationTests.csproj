@@ -93,6 +93,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="can_create_administration_bypassing_provider_bullocks.cs" />
     <Compile Include="DatabaseUtil.cs" />
     <Compile Include="ProviderFixtures\OverrideForUniversalASPNETMembershipProvider.cs" />
     <Compile Include="SpecificationForAllMembershipProviders.cs" />

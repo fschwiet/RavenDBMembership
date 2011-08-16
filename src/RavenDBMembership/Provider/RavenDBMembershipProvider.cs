@@ -37,12 +37,6 @@ namespace RavenDBMembership.Provider
             get; set;
         }
 
-        public void Initialize(IDocumentStore store, int minPasswordLength)
-        {
-            _minRequiredPasswordLength = minPasswordLength;
-            DocumentStore = store;
-        }
-
         public override void Initialize(string name, NameValueCollection config)
         {
             if (config.Keys.Cast<string>().Contains("minRequiredPasswordLength"))
@@ -107,42 +101,26 @@ namespace RavenDBMembership.Provider
                 return null;
             }
 
-            var user = new User();
-            user.Username = username;
-            password = password.Trim();
-            user.PasswordSalt = PasswordUtil.CreateRandomSalt();
-            user.PasswordHash = PasswordUtil.HashPassword(password, user.PasswordSalt);
-            user.Email = email;
-            user.ApplicationName = this.ApplicationName;
-            user.DateCreated = DateTime.Now;
-
-            using (var session = this.DocumentStore.OpenSession())
+            try
             {
-                session.Advanced.UseOptimisticConcurrency = true;
+                DateTime dateCreated = DateTime.Now;
+                
+                string userId = DataAccess.CreateUserInRaven(this.DocumentStore, this.ApplicationName, username, password, email, dateCreated);
 
-                try
-                {
-                    session.Store(user);
-                    session.Store(new ReservationForUniqueFieldValue() { Id = "username/" + user.Username });
-                    session.Store(new ReservationForUniqueFieldValue() { Id = "email/" + user.Email });
+                status = MembershipCreateStatus.Success;
 
-                    session.SaveChanges();
-
-                    status = MembershipCreateStatus.Success;
-
-                    return new MembershipUser(_providerName, username, user.Id, email, null, null, true, false, user.DateCreated,
-                        new DateTime(1900, 1, 1), new DateTime(1900, 1, 1), DateTime.Now, new DateTime(1900, 1, 1));
-                }
-                catch (ConcurrencyException e)
-                {
-                    status = InterpretConcurrencyException(user.Username, user.Email, e);
-                }
-                catch (Exception ex)
-                {
-                    // TODO: log exception properly
-                    Console.WriteLine(ex.ToString());
-                    status = MembershipCreateStatus.ProviderError;
-                }
+                return new MembershipUser(_providerName, username, userId, email, null, null, true, false, dateCreated,
+                    new DateTime(1900, 1, 1), new DateTime(1900, 1, 1), DateTime.Now, new DateTime(1900, 1, 1));
+            }
+            catch (ConcurrencyException e)
+            {
+                status = InterpretConcurrencyException(username, email, e);
+            }
+            catch (Exception ex)
+            {
+                // TODO: log exception properly
+                Console.WriteLine(ex.ToString());
+                status = MembershipCreateStatus.ProviderError;
             }
             return null;
         }

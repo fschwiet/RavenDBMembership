@@ -28,11 +28,6 @@ namespace RavenDBMembership.Provider
 			set { this.documentStore = value; }
 		}
 
-		public void Initialize(IDocumentStore store)
-		{
-			DocumentStore = store;
-		}
-
 		public override void Initialize(string name, NameValueCollection config)
 		{
 			// Try to find an IDocumentStore via Common Service Locator. 
@@ -98,26 +93,10 @@ namespace RavenDBMembership.Provider
 
 		public override void CreateRole(string roleName)
 		{
-			using (var session = this.DocumentStore.OpenSession())
-			{
-				try
-				{
-					var role = new Role(roleName, null);
-					role.ApplicationName = this.ApplicationName;
-
-					session.Store(role);
-					session.SaveChanges();
-				}
-				catch (Exception ex)
-				{
-					// TODO: log exception properly
-					Console.WriteLine(ex.ToString());
-					throw;
-				}
-			}
+		    DataAccess.CreateRole(this.DocumentStore, roleName, this.ApplicationName);
 		}
 
-		public override bool DeleteRole(string roleName, bool throwOnPopulatedRole)
+	    public override bool DeleteRole(string roleName, bool throwOnPopulatedRole)
 		{
 			using (var session = this.DocumentStore.OpenSession())
 			{
@@ -204,23 +183,10 @@ namespace RavenDBMembership.Provider
 
 		public override string[] GetUsersInRole(string roleName)
 		{
-			using (var session = this.DocumentStore.OpenSession())
-			{
-				var role = (from r in session.Query<Role>()
-							where r.Name == roleName && r.ApplicationName == this.ApplicationName
-							select r).SingleOrDefault();
-				if (role != null)
-				{
-					var usernames = from u in session.Query<User>()
-                                    where u.Roles.Any(a => a == role.Id)
-                                    select u.Username;
-					return usernames.ToArray();
-				}
-				return null;
-			}
+		    return DataAccess.GetUsersInRole(this.DocumentStore, roleName, this.ApplicationName);
 		}
 
-		public override bool IsUserInRole(string username, string roleName)
+	    public override bool IsUserInRole(string username, string roleName)
 		{
 			using (var session = this.DocumentStore.OpenSession())
 			{
