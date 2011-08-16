@@ -74,5 +74,16 @@ namespace RavenDBMembership
                 return role.Id;
             }
         }
+
+        public static string GetUserNameByEmail(IDocumentStore store, string email, string applicatName)
+        {
+            using (var session = store.OpenSession())
+            {
+                var q = from u in session.Query<User>()
+                        where u.Email == email && u.ApplicationName == applicatName
+                        select u.Username;
+                return q.SingleOrDefault();
+            }
+        }
     }
 }

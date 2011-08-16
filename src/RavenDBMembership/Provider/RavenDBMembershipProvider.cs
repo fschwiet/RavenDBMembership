@@ -236,13 +236,10 @@ namespace RavenDBMembership.Provider
 
         public override string GetUserNameByEmail(string email)
         {
-            using (var session = this.DocumentStore.OpenSession())
-            {
-                var q = from u in session.Query<User>()
-                        where u.Email == email && u.ApplicationName == this.ApplicationName
-                        select u.Username;
-                return q.SingleOrDefault();
-            }
+            var store = this.DocumentStore;
+            var applicatName = this.ApplicationName;
+
+            return DataAccess.GetUserNameByEmail(store, email, applicatName);
         }
 
         public override int MaxInvalidPasswordAttempts
