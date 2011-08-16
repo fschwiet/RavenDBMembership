@@ -514,10 +514,11 @@
             Mostly used for testing
             </summary>
         </member>
-        <member name="M:Raven.Client.Connection.HttpJsonRequestFactory.#ctor">
+        <member name="M:Raven.Client.Connection.HttpJsonRequestFactory.#ctor(System.Int32)">
             <summary>
             default ctor
             </summary>
+            <param name="maxNumberOfCachedRequests"></param>
         </member>
         <member name="M:Raven.Client.Connection.HttpJsonRequestFactory.Dispose">
             <summary>
@@ -5891,6 +5892,11 @@
         <member name="P:Raven.Client.Document.DocumentStore.WasDisposed">
             <summary>
             Whatever the instance has been disposed
+            </summary>
+        </member>
+        <member name="P:Raven.Client.Document.DocumentStore.MaxNumberOfCachedRequests">
+            <summary>
+            Max number of cached requests (default: 2048)
             </summary>
         </member>
         <member name="T:Raven.Client.Document.FailoverBehavior">
