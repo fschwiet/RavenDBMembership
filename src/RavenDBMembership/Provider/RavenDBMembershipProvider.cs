@@ -37,6 +37,12 @@ namespace RavenDBMembership.Provider
             get; set;
         }
 
+        public void Initialize(IDocumentStore store, int minPasswordLength)
+        {
+            _minRequiredPasswordLength = minPasswordLength;
+            DocumentStore = store;
+        }
+
         public override void Initialize(string name, NameValueCollection config)
         {
             if (config.Keys.Cast<string>().Contains("minRequiredPasswordLength"))

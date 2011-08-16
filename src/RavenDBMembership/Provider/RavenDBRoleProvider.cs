@@ -28,6 +28,11 @@ namespace RavenDBMembership.Provider
 			set { this.documentStore = value; }
 		}
 
+		public void Initialize(IDocumentStore store)
+		{
+			DocumentStore = store;
+		}
+
 		public override void Initialize(string name, NameValueCollection config)
 		{
 			// Try to find an IDocumentStore via Common Service Locator. 
