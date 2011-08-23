@@ -30,6 +30,11 @@
             Initialize the document store access method to RavenDB
             </summary>
         </member>
+        <member name="M:Raven.Client.Embedded.EmbeddableDocumentStore.AssertValidConfiguration">
+            <summary>
+            validate the configuration for the document store
+            </summary>
+        </member>
         <member name="E:Raven.Client.Embedded.EmbeddableDocumentStore.Disposed">
             <summary>
             Raised after this instance has been disposed

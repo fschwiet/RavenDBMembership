@@ -11,37 +11,39 @@ namespace RavenDBMembership.IntegrationTests
     {
         public override void Specify()
         {
-            var applicationName = "testApp";
-            var roleName = "Administrators";
-            var store = arrange(() => new EmbeddableDocumentStore() { RunInMemory = true });
-            arrange(() => store.Initialize());
-
-            it("has no Administrator initially", delegate
+            foreach(var applicationName in new [] {"appName", null})
             {
-                var result = DataAccess.GetUsersInRole(store, roleName, applicationName);
-                expect(() => result == null || result.Count() == 0);
-            });
+                var roleName = "Administrators";
+                var store = arrange(() => new EmbeddableDocumentStore() { RunInMemory = true });
+                arrange(() => store.Initialize());
 
-            when("an administrator is created in that role", delegate {
-                arrange(delegate
-                {
-                    var roleId = DataAccess.CreateRole(store, roleName, applicationName);
-                    DataAccess.CreateUserInRaven(store, applicationName, "admin", "password", "email@server.com", DateTime.Now, new[] { roleId });
-                });
-
-                then("the administrator is in the administrators role", delegate
+                it("has no Administrator initially", delegate
                 {
                     var result = DataAccess.GetUsersInRole(store, roleName, applicationName);
-                    expect(() => result.Single() == "admin");
+                    expect(() => result == null || result.Count() == 0);
                 });
 
-                then("the administrator has that email", delegate
-                {
-                    var result = DataAccess.GetUserNameByEmail(store, "email@server.com", applicationName);
+                when("an administrator is created in that role", delegate {
+                    arrange(delegate
+                    {
+                        var roleId = DataAccess.CreateRole(store, roleName, applicationName);
+                        DataAccess.CreateUserInRaven(store, applicationName, "admin", "password", "email@server.com", DateTime.Now, new[] { roleId });
+                    });
 
-                    expect(() => result == "admin");
-                });
-            }); 
+                    then("the administrator is in the administrators role", delegate
+                    {
+                        var result = DataAccess.GetUsersInRole(store, roleName, applicationName);
+                        expect(() => result.Single() == "admin");
+                    });
+
+                    then("the administrator has that email", delegate
+                    {
+                        var result = DataAccess.GetUserNameByEmail(store, "email@server.com", applicationName);
+
+                        expect(() => result == "admin");
+                    });
+                }); 
+            }
         }
     }
 }

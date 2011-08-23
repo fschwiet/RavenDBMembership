@@ -564,19 +564,19 @@
         </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.StartsWith(System.String,System.Int32,System.Int32)">
             <summary>
-            Gets documents for the specified key prefix
+            Retrieves documents for the specified key prefix
             </summary>
         </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.Get(System.String)">
             <summary>
-            Gets the document for the specified key.
+            Retrieves the document for the specified key
             </summary>
             <param name="key">The key.</param>
             <returns></returns>
         </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.Get(System.String[],System.String[])">
             <summary>
-            Gets the results for the specified ids.
+            Retrieves documents with the specified ids, optionally specifying includes to fetch along
             </summary>
             <param name="ids">The ids.</param>
             <param name="includes">The includes.</param>
@@ -584,7 +584,7 @@
         </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.Put(System.String,System.Nullable{System.Guid},Raven.Json.Linq.RavenJObject,Raven.Json.Linq.RavenJObject)">
             <summary>
-            Puts the document with the specified key in the database
+            Puts the document in the database with the specified key
             </summary>
             <param name="key">The key.</param>
             <param name="etag">The etag.</param>
@@ -594,14 +594,14 @@
         </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.Delete(System.String,System.Nullable{System.Guid})">
             <summary>
-            Deletes the document with the specified key.
+            Deletes the document with the specified key
             </summary>
             <param name="key">The key.</param>
             <param name="etag">The etag.</param>
         </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.PutAttachment(System.String,System.Nullable{System.Guid},System.Byte[],Raven.Json.Linq.RavenJObject)">
             <summary>
-            Puts the attachment with the specified key
+            Puts a byte array as attachment with the specified key
             </summary>
             <param name="key">The key.</param>
             <param name="etag">The etag.</param>
@@ -610,7 +610,7 @@
         </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.GetAttachment(System.String)">
             <summary>
-            Gets the attachment by the specified key
+            Retrieves the attachment with the specified key
             </summary>
             <param name="key">The key.</param>
             <returns></returns>
@@ -624,7 +624,7 @@
         </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.GetIndexNames(System.Int32,System.Int32)">
             <summary>
-            Gets the index names from the server
+            Returns the names of all indexes that exist on the server
             </summary>
             <param name="start">Paging start</param>
             <param name="pageSize">Size of the page.</param>
@@ -644,14 +644,23 @@
         </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.PutIndex(System.String,Raven.Abstractions.Indexing.IndexDefinition)">
             <summary>
-            Puts the index definition for the specified name
+            Creates an index with the specified name, based on an index definition
             </summary>
             <param name="name">The name.</param>
             <param name="indexDef">The index def.</param>
         </member>
+        <member name="M:Raven.Client.Connection.IDatabaseCommands.PutIndex(System.String,Raven.Abstractions.Indexing.IndexDefinition,System.Boolean)">
+            <summary>
+            Creates an index with the specified name, based on an index definition
+            </summary>
+            <param name="name">The name.</param>
+            <param name="indexDef">The index def.</param>
+            <param name="overwrite">if set to <c>true</c> [overwrite].</param>
+        </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.PutIndex``2(System.String,Raven.Client.Indexes.IndexDefinitionBuilder{``0,``1})">
             <summary>
-            Puts the index definition for the specified name
+            Creates an index with the specified name, based on an index definition that is created by the supplied
+            IndexDefinitionBuilder
             </summary>
             <typeparam name="TDocument">The type of the document.</typeparam>
             <typeparam name="TReduceResult">The type of the reduce result.</typeparam>
@@ -659,17 +668,10 @@
             <param name="indexDef">The index def.</param>
             <returns></returns>
         </member>
-        <member name="M:Raven.Client.Connection.IDatabaseCommands.PutIndex(System.String,Raven.Abstractions.Indexing.IndexDefinition,System.Boolean)">
-            <summary>
-            Puts the index for the specified name
-            </summary>
-            <param name="name">The name.</param>
-            <param name="indexDef">The index def.</param>
-            <param name="overwrite">if set to <c>true</c> [overwrite].</param>
-        </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.PutIndex``2(System.String,Raven.Client.Indexes.IndexDefinitionBuilder{``0,``1},System.Boolean)">
             <summary>
-            Puts the index for the specified name
+            Creates an index with the specified name, based on an index definition that is created by the supplied
+            IndexDefinitionBuilder
             </summary>
             <typeparam name="TDocument">The type of the document.</typeparam>
             <typeparam name="TReduceResult">The type of the reduce result.</typeparam>
@@ -679,7 +681,7 @@
         </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.Query(System.String,Raven.Abstractions.Data.IndexQuery,System.String[])">
             <summary>
-            Queries the specified index.
+            Queries the specified index in the Raven flavoured Lucene query syntax
             </summary>
             <param name="index">The index.</param>
             <param name="query">The query.</param>
@@ -687,7 +689,7 @@
         </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.DeleteIndex(System.String)">
             <summary>
-            Deletes the index.
+            Deletes the specified index
             </summary>
             <param name="name">The name.</param>
         </member>
@@ -699,26 +701,26 @@
         </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.Commit(System.Guid)">
             <summary>
-            Commits the specified tx id.
+            Commits the specified tx id
             </summary>
             <param name="txId">The tx id.</param>
         </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.Rollback(System.Guid)">
             <summary>
-            Rollbacks the specified tx id.
+            Rollbacks the specified tx id
             </summary>
             <param name="txId">The tx id.</param>
         </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.PromoteTransaction(System.Guid)">
             <summary>
-            Promotes the transaction.
+            Promotes the transaction
             </summary>
             <param name="fromTxId">From tx id.</param>
             <returns></returns>
         </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.StoreRecoveryInformation(System.Guid,System.Guid,System.Byte[])">
             <summary>
-            Stores the recovery information.
+            Stores the recovery information
             </summary>
             <param name="resourceManagerId">The resource manager Id for this transaction</param>
             <param name="txId">The tx id.</param>
@@ -740,7 +742,7 @@
         </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.DeleteByIndex(System.String,Raven.Abstractions.Data.IndexQuery,System.Boolean)">
             <summary>
-            Perform a set based deletes using the specified index.
+            Perform a set based deletes using the specified index
             </summary>
             <param name="indexName">Name of the index.</param>
             <param name="queryToDelete">The query to delete.</param>
@@ -757,7 +759,7 @@
         </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.UpdateByIndex(System.String,Raven.Abstractions.Data.IndexQuery,Raven.Abstractions.Data.PatchRequest[],System.Boolean)">
             <summary>
-            Perform a set based update using the specified index.
+            Perform a set based update using the specified index
             </summary>
             <param name="indexName">Name of the index.</param>
             <param name="queryToUpdate">The query to update.</param>
@@ -773,19 +775,19 @@
         <member name="M:Raven.Client.Connection.IDatabaseCommands.GetRootDatabase">
             <summary>
             Create a new instance of <see cref="T:Raven.Client.Connection.IDatabaseCommands"/> that will interact
-            with the root database. Useful if the database has works against a tenant database.
+            with the root database. Useful if the database has works against a tenant database
             </summary>
         </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.Suggest(System.String,Raven.Abstractions.Data.SuggestionQuery)">
             <summary>
-            Returns a list of suggestions based on the specified suggestion query.
+            Returns a list of suggestions based on the specified suggestion query
             </summary>
             <param name="index">The index to query for suggestions</param>
             <param name="suggestionQuery">The suggestion query.</param>
         </member>
         <member name="M:Raven.Client.Connection.IDatabaseCommands.GetTerms(System.String,System.String,System.String,System.Int32)">
             <summary>
-             Get the possible terms for the specified field in the index 
+             Get the all terms stored in the index for the specified field
              You can page through the results by use fromValue parameter as the 
              starting point for the next query
             </summary>
@@ -818,7 +820,7 @@
         </member>
         <member name="P:Raven.Client.Connection.IDatabaseCommands.OperationsHeaders">
             <summary>
-            Gets or sets the operations headers.
+            Gets or sets the operations headers
             </summary>
             <value>The operations headers.</value>
         </member>
@@ -4591,6 +4593,11 @@
             Get the CLR type (if exists) from the document
             </summary>
         </member>
+        <member name="M:Raven.Client.Document.DocumentConvention.GetClrTypeName(System.Type)">
+            <summary>
+             Get the CLR type name to be stored in the entity metadata
+            </summary>
+        </member>
         <member name="P:Raven.Client.Document.DocumentConvention.FailoverBehavior">
             <summary>
             How should we behave in a replicated environment when we can't 
@@ -4634,6 +4641,11 @@
         <member name="P:Raven.Client.Document.DocumentConvention.FindClrType">
             <summary>
             Gets or sets the function to find the clr type of a document.
+            </summary>
+        </member>
+        <member name="P:Raven.Client.Document.DocumentConvention.FindClrTypeName">
+            <summary>
+            Gets or sets the function to find the clr type name from a clr type
             </summary>
         </member>
         <member name="P:Raven.Client.Document.DocumentConvention.FindFullDocumentKeyFromNonStringIdentifier">
@@ -5748,6 +5760,11 @@
             Initializes this instance.
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:Raven.Client.Document.DocumentStore.AssertValidConfiguration">
+            <summary>
+            validate the configuration for the document store
+            </summary>
         </member>
         <member name="M:Raven.Client.Document.DocumentStore.InitializeInternal">
             <summary>
