@@ -15,7 +15,7 @@ namespace RavenDBMembership
 			{
 				if (String.IsNullOrEmpty(this._id))
 				{
-					this._id = GenerateId();
+					this._id = GenerateId().ToLower();
 				}
 				return this._id;
 			}

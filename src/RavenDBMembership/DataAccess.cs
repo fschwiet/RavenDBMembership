@@ -85,5 +85,26 @@ namespace RavenDBMembership
                 return q.SingleOrDefault();
             }
         }
+
+        public static bool IsUserInRole(IDocumentStore store, string username, string roleName, string applicationName)
+        {
+            using (var session = store.OpenSession())
+            {
+                var user = session.Query<User>()
+                    .Where(u => u.Username == username && u.ApplicationName == applicationName)
+                    .SingleOrDefault();
+                if (user != null)
+                {
+                    var role = (from r in session.Query<Role>()
+                                where r.Name == roleName && r.ApplicationName == applicationName
+                                select r).SingleOrDefault();
+                    if (role != null)
+                    {
+                        return user.Roles.Contains(role.Id);
+                    }
+                }
+                return false;
+            }
+        }
     }
 }

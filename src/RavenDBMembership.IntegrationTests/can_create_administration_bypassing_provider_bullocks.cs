@@ -36,6 +36,11 @@ namespace RavenDBMembership.IntegrationTests
                         expect(() => result.Single() == "admin");
                     });
 
+                    then("the administrator is in the administrators role -- according to other method", delegate
+                    {
+                        expect(() => DataAccess.IsUserInRole(store, "admin", roleName, applicationName));
+                    });
+
                     then("the administrator has that email", delegate
                     {
                         var result = DataAccess.GetUserNameByEmail(store, "email@server.com", applicationName);

@@ -183,28 +183,12 @@ namespace RavenDBMembership.Provider
 
 		public override string[] GetUsersInRole(string roleName)
 		{
-		    return DataAccess.GetUsersInRole(this.DocumentStore, roleName, this.ApplicationName);
+			return DataAccess.GetUsersInRole(this.DocumentStore, roleName, this.ApplicationName);
 		}
 
-	    public override bool IsUserInRole(string username, string roleName)
+		public override bool IsUserInRole(string username, string roleName)
 		{
-			using (var session = this.DocumentStore.OpenSession())
-			{
-				var user = session.Query<User>()
-					.Where(u => u.Username == username && u.ApplicationName == this.ApplicationName)
-					.SingleOrDefault();
-				if (user != null)
-				{
-					var role = (from r in session.Query<Role>()
-								where r.Name == roleName && r.ApplicationName == this.ApplicationName
-								select r).SingleOrDefault();
-					if (role != null)
-					{
-						return user.Roles.Contains(role.Id);
-					}
-				}
-				return false;
-			}
+			return DataAccess.IsUserInRole(this.DocumentStore, username, roleName, this.ApplicationName);
 		}
 
 		public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)
