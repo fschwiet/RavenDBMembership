@@ -416,20 +416,10 @@
             A representation of an HTTP json request to the RavenDB server
             </summary>
         </member>
-        <member name="M:Raven.Client.Connection.HttpJsonRequest.BeginReadResponseString(System.AsyncCallback,System.Object)">
+        <member name="M:Raven.Client.Connection.HttpJsonRequest.ReadResponseStringAsync">
             <summary>
             Begins the read response string.
             </summary>
-            <param name="callback">The callback.</param>
-            <param name="state">The state.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Raven.Client.Connection.HttpJsonRequest.EndReadResponseString(System.IAsyncResult)">
-            <summary>
-            Ends the reading of the response string.
-            </summary>
-            <param name="result">The result.</param>
-            <returns></returns>
         </member>
         <member name="M:Raven.Client.Connection.HttpJsonRequest.ReadResponseString">
             <summary>
@@ -529,6 +519,15 @@
         <member name="M:Raven.Client.Connection.HttpJsonRequestFactory.DisableAllCaching">
             <summary>
             Disable all caching within the given scope
+            </summary>
+        </member>
+        <member name="P:Raven.Client.Connection.HttpJsonRequestFactory.EnableBasicAuthenticationOverUnsecureHttpEvenThoughPasswordsWouldBeSentOverTheWireInClearTextToBeStolenByHackers">
+            <summary>
+            Advanced: Don't set this unless you know what you are doing!
+            
+            Enable using basic authentication using http
+            By default, RavenDB only allows basic authentication over HTTPS, setting this property to true
+            will instruct RavenDB to make unsecure calls (usually only good for testing / internal networks).
             </summary>
         </member>
         <member name="E:Raven.Client.Connection.HttpJsonRequestFactory.ConfigureRequest">
@@ -1296,7 +1295,7 @@
             </summary>
             <param name="name">The name.</param>
             <param name="definition">The definition.</param>
-            <param name="overwrite">if set to <c>true</c> [overwrite].</param>
+            <param name="overwrite">if set to <c>true</c> overwrite the index.</param>
             <returns></returns>
         </member>
         <member name="M:Raven.Client.Connection.ServerClient.PutIndex``2(System.String,Raven.Client.Indexes.IndexDefinitionBuilder{``0,``1})">
@@ -4704,6 +4703,17 @@
             <summary>
             Instruct RavenDB to parallel Multi Get processing 
             when handling lazy requests
+            </summary>
+        </member>
+        <member name="P:Raven.Client.Document.DocumentConvention.HandleUnauthorizedResponse">
+            <summary>
+            Handles unauthenticate responses, usually by authenticating against the oauth server
+            </summary>
+        </member>
+        <member name="P:Raven.Client.Document.DocumentConvention.HandleUnauthorizedResponseAsync">
+            <summary>
+            Begins handling of unauthenticate responses, usually by authenticating against the oauth server
+            in async manner
             </summary>
         </member>
         <member name="T:Raven.Client.Document.ConsistencyOptions">

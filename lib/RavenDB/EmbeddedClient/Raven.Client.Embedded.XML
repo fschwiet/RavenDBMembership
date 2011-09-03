@@ -68,6 +68,11 @@
              Access the embedded instance of RavenDB
             </summary>
         </member>
+        <member name="P:Raven.Client.Embedded.EmbeddableDocumentStore.HttpServer">
+            <summary>
+            Expose the internal http server, if used
+            </summary>
+        </member>
         <member name="P:Raven.Client.Embedded.EmbeddableDocumentStore.UseEmbeddedHttpServer">
             <summary>
              Whatever we should also host an HTTP endpoint for the document database
